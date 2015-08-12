@@ -1,0 +1,165 @@
+<html>
+    
+    <head>
+        <title>Advanced Angular Navigation</title>
+        <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular.min.js"></script>
+        <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular-animate.min.js"></script>
+        <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular-loader.min.js"></script>
+        <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular-sanitize.min.js"></script>
+        <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular-cookies.min.js"></script>
+        <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular-touch.min.js"></script>
+        <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular-resource.min.js"></script>
+        <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.12.1/ui-bootstrap.min.js"></script>
+        <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.12.1/ui-bootstrap-tpls.min.js"></script>
+        <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.13/angular-ui-router.min.js"></script>
+        <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui/0.4.0/angular-ui-ieshiv.min.js"></script>
+        <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui/0.4.0/angular-ui.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <script type='text/javascript' src="script.js"></script>
+        <script type='text/javascript' src="https://rawgit.com/long2know/angular-dialog-service/master/src/dialogService.js"></script>
+    </head>    
+    <body ng-app="myApp">
+        <div ng-include="'menu.html'"></div>
+        <div ui-view="main" class="container-fluid"></div>
+        <script type="text/ng-template" id="menu.html">
+            <nav class="navbar navbar-default" ng-controller="menuCtrl as mn">
+              <div class="container-fluid">
+                <div class="navbar-header">
+                    <span class="navbar-brand">Our Menu</span>
+                </div>
+                <div>
+                  <ul class="nav navbar-nav">
+                      <li ng-repeat="m in mn.menuItems track by $index" ng-class="{'active': m && m.active}">
+                          <a ng-href="{{ mn.getRouteSref(m) }}" ng-bind="m.heading" />
+                        </li>
+                      <li>
+                          <div class="navbar-hedaer"><span class="navbar-brand">$Watchers: </span><span class="navbar-brand" ng-bind="mn.watchCount" /></div></li>
+                  </ul>
+                </div>
+              </div>
+            </nav>
+        </script>
+        <script type="text/ng-template" id="modalSimple.html">
+            <div class="modal-body">
+                <h3>Changed states</h3>
+                <p>You changed states.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="button primary" ng-click="ok()">Ok</button>
+            </div>
+        </script>
+        <script type="text/ng-template" id="state1.html">
+            <div>
+                <h1>This is State 1 with no callbacks</h1>
+            </div>
+            <form name="vm.myForm" novalidate>
+        	<div class="content">
+        		<div class="form">
+        			<label for="firstname">First Name</label><br>
+        			<div class="form-group" ng-class="{ 'has-error': vm.myForm.firstname.$invalid }">
+        				<input id="firstname" name="firstname" type="text" class="input primary form-control form-control-inline" placeholder="First Name"
+        					   ng-model="mf.dialogModel.firstname" ng-required="true" autocomplete="off" />
+        				<small id="firstnameReq" class="error" ng-show="vm.myForm.firstname.$error.required">This is a required field.</small>
+        			</div>
+        			<label for="lastname">Last Name</label><br>
+        			<div class="form-group" ng-class="{ 'has-error': vm.myForm.lastname.$invalid }">
+        				<input name="lastname" type="text" class="input primary form-control form-control-inline" placeholder="Last Name"
+        					   ng-model="mf.dialogModel.lastname" ng-required="true" autocomplete="off" />
+        				<small id="lastnameReq" class="error" ng-show="vm.myForm.lastname.$error.required">This is a required field.</small>
+        			</div>
+        		</div>
+        	</div>
+        </form>
+        </script>
+        <script type="text/ng-template" id="state2.html">
+            <div>
+                <h1>This is State 2 - it has validty callbacks</h1>
+            </div>
+        <form name="vm.myForm" novalidate>
+        	<div class="content">
+        		<div class="form">
+        			<label for="firstname">First Name</label><br>
+        			<div class="form-group" ng-class="{ 'has-error': vm.myForm.firstname.$invalid }">
+        				<input id="firstname" name="firstname" type="text" class="input primary form-control form-control-inline" placeholder="First Name"
+        					   ng-model="mf.dialogModel.firstname" ng-required="true" autocomplete="off" />
+        				<small id="firstnameReq" class="error" ng-show="vm.myForm.firstname.$error.required">This is a required field.</small>
+        			</div>
+        			<label for="lastname">Last Name</label><br>
+        			<div class="form-group" ng-class="{ 'has-error': vm.myForm.lastname.$invalid }">
+        				<input name="lastname" type="text" class="input primary form-control form-control-inline" placeholder="Last Name"
+        					   ng-model="mf.dialogModel.lastname" ng-required="true" autocomplete="off" />
+        				<small id="lastnameReq" class="error" ng-show="vm.myForm.lastname.$error.required">This is a required field.</small>
+        			</div>
+        		</div>
+        	</div>
+        </form>
+        </script>
+        <script type="text/ng-template" id="state3.html">
+            <div>
+                <h1>This is State 3 with "on navigate" call backs</h1>
+            </div>
+             <form name="vm.myForm" novalidate>
+        	<div class="content">
+        		<div class="form">
+        			<label for="firstname">First Name</label><br>
+        			<div class="form-group" ng-class="{ 'has-error': vm.myForm.firstname.$invalid }">
+        				<input id="firstname" name="firstname" type="text" class="input primary form-control form-control-inline" placeholder="First Name"
+        					   ng-model="mf.dialogModel.firstname" ng-required="true" autocomplete="off" />
+        				<small id="firstnameReq" class="error" ng-show="vm.myForm.firstname.$error.required">This is a required field.</small>
+        			</div>
+        			<label for="lastname">Last Name</label><br>
+        			<div class="form-group" ng-class="{ 'has-error': vm.myForm.lastname.$invalid }">
+        				<input name="lastname" type="text" class="input primary form-control form-control-inline" placeholder="Last Name"
+        					   ng-model="mf.dialogModel.lastname" ng-required="true" autocomplete="off" />
+        				<small id="lastnameReq" class="error" ng-show="vm.myForm.lastname.$error.required">This is a required field.</small>
+        			</div>
+        		</div>
+        	</div>
+        </form>
+        </script>
+        <script type="text/ng-template" id="state4.html">
+            <div>
+                <h1>This is State 4 with both validity and "on navigate" callbacks</h1>
+            </div>
+            <form name="vm.myForm" novalidate>
+        	<div class="content">
+        		<div class="form">
+        			<label for="firstname">First Name</label><br>
+        			<div class="form-group" ng-class="{ 'has-error': vm.myForm.firstname.$invalid }">
+        				<input id="firstname" name="firstname" type="text" class="input primary form-control form-control-inline" placeholder="First Name"
+        					   ng-model="mf.dialogModel.firstname" ng-required="true" autocomplete="off" />
+        				<small id="firstnameReq" class="error" ng-show="vm.myForm.firstname.$error.required">This is a required field.</small>
+        			</div>
+        			<label for="lastname">Last Name</label><br>
+        			<div class="form-group" ng-class="{ 'has-error': vm.myForm.lastname.$invalid }">
+        				<input name="lastname" type="text" class="input primary form-control form-control-inline" placeholder="Last Name"
+        					   ng-model="mf.dialogModel.lastname" ng-required="true" autocomplete="off" />
+        				<small id="lastnameReq" class="error" ng-show="vm.myForm.lastname.$error.required">This is a required field.</small>
+        			</div>
+        		</div>
+        	</div>
+        </form>
+        </script>
+        <script type="text/ng-template" id="modalErrorTemplate.html">
+            <div class="modal-header">
+                <h3 ng-bind-html="modalHeader"></h3>
+            </div>
+            <div class="modal-body" ng-bind-html="modalBody"></div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" ng-click="ok()">Ok</button>
+            </div>
+        </script>
+        <script type="text/ng-template" id="modalGeneral.html">
+            <div class="modal-header">
+                <h3 ng-bind-html="modalHeader"></h3>
+            </div>
+            <div class="modal-body" ng-bind-html="modalBody"></div>
+            <div class="modal-footer">
+                <input class="btn" type="button" ng-show="hasCancel" data-ng-click="cancel()" value="Cancel">
+                <button class="btn btn-primary" ng-click="ok()">Ok</button>
+            </div>
+        </script>
+    </body>
+</html>

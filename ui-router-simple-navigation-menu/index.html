@@ -1,0 +1,67 @@
+<html>
+    
+    <head>
+        <title>Simple UI-Router Menu (Simple Navigation)</title>
+        <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular.min.js"></script>
+        <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular-animate.min.js"></script>
+        <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular-loader.min.js"></script>
+        <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular-sanitize.min.js"></script>
+        <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular-cookies.min.js"></script>
+        <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular-touch.min.js"></script>
+        <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular-resource.min.js"></script>
+        <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.12.1/ui-bootstrap.min.js"></script>
+        <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.12.1/ui-bootstrap-tpls.min.js"></script>
+        <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.13/angular-ui-router.min.js"></script>
+        <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui/0.4.0/angular-ui-ieshiv.min.js"></script>
+        <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui/0.4.0/angular-ui.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <script type='text/javascript' src="script.js"></script>
+    </head>    
+    <body ng-app="myApp">
+        <div ng-include="'menu.html'"></div>
+        <div ui-view="main" class="container-fluid"></div>
+        <script type="text/ng-template" id="menu.html">
+            <nav class="navbar navbar-default" ng-controller="menuCtrl as mn">
+              <div class="container-fluid">
+                <div class="navbar-header">
+                    <span class="navbar-brand">Our Menu</span>
+                </div>
+                <div>
+                  <ul class="nav navbar-nav">
+                      <li ng-repeat="m in mn.menuItems track by $index" ng-class="{'active': m && m.active}">
+                          <a ng-href="{{ mn.getRouteSref(m) }}" ng-bind="m.heading" />
+                        </li>
+                  </ul>
+                </div>
+              </div>
+            </nav>
+        </script>
+        <script type="text/ng-template" id="modalSimple.html">
+            <div class="modal-body">
+                <h3>Changed states</h3>
+                <p>You changed states.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="button primary" ng-click="ok()">Ok</button>
+            </div>
+        </script>
+        <script type="text/ng-template" id="state1.html">
+            <div>
+                <h1>This is State 1</h1>
+            </div>
+        </script>
+        <script type="text/ng-template" id="state2.html">
+            <div>
+                <h1>This is State 2</h1>
+            </div>
+        </script>
+        <script type="text/ng-template" id="state3.html">
+            <div>
+                <h1>This is State 3</h1>
+            </div>
+        </script>
+    </body>
+
+</html>
