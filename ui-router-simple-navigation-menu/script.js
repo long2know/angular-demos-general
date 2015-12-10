@@ -78,9 +78,9 @@
         'ui'
     ]);
     
-    myApp.config(['$modalProvider', '$locationProvider', '$stateProvider', '$urlRouterProvider',
-        function ($modalProvider, $locationProvider, $stateProvider, $urlRouterProvider) {
-            $modalProvider.options = { dialogFade: true, backdrop: 'static', keyboard: false };
+    myApp.config(['$uibModalProvider', '$locationProvider', '$stateProvider', '$urlRouterProvider',
+        function ($uibModalProvider, $locationProvider, $stateProvider, $urlRouterProvider) {
+            $uibModalProvider.options = { animation: true, backdrop: 'static', keyboard: false };
             $locationProvider.html5Mode(false);
 
             $urlRouterProvider

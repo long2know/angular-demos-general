@@ -81,7 +81,7 @@
             if ((valdatinFnResponse !== true || valdatinFnResponse.error === true)) {
                 var errorTitle = 'Validation Error!';
                 var errorBody = (valdatinFnResponse.errorMessage) ? valdatinFnResponse.errorMessage : 'Please correct the form errors listed!';
-                dialogService.openDialog("modalErrorTemplate.html", ['$scope', '$modalInstance', function ($scope, $modalInstance) {
+                dialogService.openDialog("modalErrorTemplate.html", ['$scope', '$uibModalInstance', function ($scope, $modalInstance) {
                     $scope.modalHeader = $sce.trustAsHtml(errorTitle);
                     $scope.modalBody = $sce.trustAsHtml(dialogService.stringFormat("<p><strong>{0}</strong></p>", errorBody));
                     $scope.ok = function () {
@@ -278,14 +278,10 @@
     angular.module('myApp.services')
         .factory('watchCountService', watchCountService);
 
-    myApp.config(['$modalProvider', '$locationProvider', '$stateProvider', '$urlRouterProvider',
+    myApp.config(['$uibModalProvider', '$locationProvider', '$stateProvider', '$urlRouterProvider',
 
-    function ($modalProvider, $locationProvider, $stateProvider, $urlRouterProvider) {
-        $modalProvider.options = {
-            dialogFade: true,
-            backdrop: 'static',
-            keyboard: false
-        };
+    function ($uibModalProvider, $locationProvider, $stateProvider, $urlRouterProvider) {
+        $uibModalProvider.options = { animation: true, backdrop: 'static', keyboard: false };
         $locationProvider.html5Mode(false);
 
         $urlRouterProvider.when('/', '/state1')
