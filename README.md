@@ -30,4 +30,9 @@ tracking and integration.
 ### Client/Server Validation Integration
 
 This demo shows how to take server-side validation errors and integrate them into
-Angular's built-in form valdaition.
+Angular's built-in form valdaition.  On the backend, a simple nodejs application
+is used to random return errors for the form elements.
+
+  - [Blog](https://long2know.com/2015/12/integrating-client-and-server-side-validation-part-2/)
+  - [Demo Plunker](http://plnkr.co/edit/wHvDG2?p=preview)
+  - [Demo Codepen](http://codepen.io/long2know/pen/adNWjY)
