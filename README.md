@@ -26,3 +26,8 @@ tracking and integration.
   - [Blog](https://long2know.com/2015/03/advanced-angular-navigation/)
   - [Demo Plunker](http://plnkr.co/edit/gZxD3P?p=preview)
   - [Demo Codepen](http://codepen.io/long2know/pen/vOMLXN)
+
+### Client/Server Validation Integration
+
+This demo shows how to take server-side validation errors and integrate them into
+Angular's built-in form valdaition.
