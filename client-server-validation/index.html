@@ -1,0 +1,86 @@
+<html>
+
+<head>
+    <title>Client/Server Validation Integration Demo</title>
+    <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular.min.js"></script>
+    <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular-animate.min.js"></script>
+    <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular-loader.min.js"></script>
+    <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular-sanitize.min.js"></script>
+    <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular-cookies.min.js"></script>
+    <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular-touch.min.js"></script>
+    <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular-resource.min.js"></script>
+    <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.14.3/ui-bootstrap.min.js"></script>
+    <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.14.3/ui-bootstrap-tpls.min.js"></script>
+    <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.13/angular-ui-router.min.js"></script>
+    <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui/0.4.0/angular-ui-ieshiv.min.js"></script>
+    <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui/0.4.0/angular-ui.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <script type='text/javascript' src="script.js"></script>
+    <script type='text/javascript' src="serverError.js"></script>
+    <script type='text/javascript' src="validationService.js"></script>
+</head>
+
+<body ng-app="myApp">
+    <div ng-include="'menu.html'"></div>
+    <div ui-view="main" class="container"></div>
+
+    <script type="text/ng-template" id="menu.html">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <span class="navbar-brand">Client/Server Validation Integration Demo</span>
+                </div>
+            </div>
+        </nav>
+    </script>
+
+    <script type="text/ng-template" id="state1.html">
+        <form class="form" name="vm.form" role="form" novalidate>
+            <div class="form-group">
+                <div class="form-group" ng-class="{ 'has-error': vm.form.firstname.$invalid && vm.isSubmitted }">
+                    <label for="firstname">First Name</label>
+                    <div class="form-group" ng-class="{ 'has-error': vm.form.firstname.$invalid && vm.isSubmitted }">
+                        <input id="firstname" name="firstname" type="text" class="input primary form-control form-control-inline" placeholder="First Name"
+                        ng-model="vm.firstname" ng-required="true" autocomplete="off" server-error="true" />
+                        <small id="firstnameReq" class="error" ng-show="vm.isSubmitted && vm.form.firstname.$error.required">This is a required field.</small>
+                        <small class="error" ng-show="vm.isSubmitted && !vm.form.firstname.$error.required && vm.form.firstname.$error.server">
+                            {{vm.form.firstname.$error.serverMessage}}
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{ 'has-error': vm.form.lastname.$invalid && vm.isSubmitted }">
+                    <label for="lastname">Last Name</label>
+                    <div class="form-group" ng-class="{ 'has-error': vm.form.lastname.$invalid && vm.isSubmitted }">
+                        <input id="lastname" name="lastname" type="text" class="input primary form-control form-control-inline" placeholder="Last Name"
+                        ng-model="vm.lastname" ng-required="true" autocomplete="off" server-error="true" />
+                        <small id="lastnameReq" class="error" ng-show="vm.isSubmitted && vm.form.lastname.$error.required">This is a required field.</small>
+                        <small class="error" ng-show="vm.isSubmitted && !vm.form.lastname.$error.required && vm.form.lastname.$error.server">
+                            {{vm.form.lastname.$error.serverMessage}}
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{ 'has-error': vm.form.email.$invalid && vm.isSubmitted }">
+                    <label for="email">Email</label>
+                    <div class="form-group" ng-class="{ 'has-error': vm.form.email.$invalid && vm.isSubmitted }">
+                        <input id="email" name="email" type="text" class="input primary form-control form-control-inline" placeholder="Email"
+                        ng-model="vm.email" ng-required="true" autocomplete="off" server-error="true" />
+                        <small id="emailReq" class="error" ng-show="vm.isSubmitted && vm.form.email.$error.required">This is a required field.</small>
+                        <small class="error" ng-show="vm.isSubmitted && !vm.form.email.$error.required && vm.form.email.$error.server">
+                            {{vm.form.email.$error.serverMessage}}
+                        </small>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group buttons">
+                <button id="clear" type="button" class="btn btn-default" ng-click="vm.discard()">Clear</button>
+                <button id="save" type="button" class="btn btn-primary pull-right" ng-click="vm.submit()" ng-disabled="!vm.form.$dirty">Submit</button>
+            </div>
+        </form>
+    </script>
+</body>
+
+</html>
