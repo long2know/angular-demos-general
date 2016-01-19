@@ -45,5 +45,5 @@ As with the other navigation demos, this demo illustrates state change tracking 
 into the ui-router pipeline to take advantage of state management.
 
   - [Blog](https://long2know.com/2016/01/angular-tabbed-navigation/)
-  - [Demo Plunker]()
-  - [Demo Codepen]()
+  - [Demo Plunker](http://plnkr.co/edit/w5xdJP?p=preview)
+  - [Demo Codepen](http://codepen.io/long2know/pen/gPXeVL)
