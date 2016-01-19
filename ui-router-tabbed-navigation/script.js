@@ -22,7 +22,7 @@
 
     var tabsCtrl = function ($state, $location, $filter, appStates, navigationService) {
         var
-            vm = this,            
+            vm = this,
             initialize = function () {
                 vm.appStates = appStates.states;
             };
@@ -45,7 +45,7 @@
         'ui.router',
         'ui'
     ]);
-    
+
     myApp.config(['$uibModalProvider', '$locationProvider', '$stateProvider', '$urlRouterProvider',
         function ($uibModalProvider, $locationProvider, $stateProvider, $urlRouterProvider) {
             $uibModalProvider.options = { animation: true, backdrop: 'static', keyboard: false };
@@ -54,7 +54,7 @@
             $urlRouterProvider
                 .when('/', '/state1')
                 .otherwise("/state1");
-                
+
             $stateProvider
                 .state('tabs', {
                     abstract: true,
@@ -78,18 +78,18 @@
                     controller: function () { },
                     reloadOnSearch: false
                 })
-				.state('tabs.state3', {
-				    url: 'state3',
-				    templateUrl: 'state3.html',
-				    controller: function () { },
-				    reloadOnSearch: false
-				})
+                .state('tabs.state3', {
+                    url: 'state3',
+                    templateUrl: 'state3.html',
+                    controller: function () { },
+                    reloadOnSearch: false
+                })
                 .state('tabs.state4', {
-				    url: 'state4',
-				    templateUrl: 'state4.html',
-				    controller: function () { },
-				    reloadOnSearch: false
-				})
+                    url: 'state4',
+                    templateUrl: 'state4.html',
+                    controller: function () { },
+                    reloadOnSearch: false
+                })
         }]);
 
     myApp.run(['$log', 'navigationService', function ($log, navigationService) {
