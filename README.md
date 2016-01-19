@@ -14,7 +14,7 @@ works nicely with Angular's ui-router.
   
 ### Advanced UI Router Menu and Navigation
 
-This demo, like hte simple ui-route menu demo, shows how you can build an interactive
+This demo, like the simple ui-route menu demo, shows how you can build an interactive
 menu system and interact with the user.
 
 This demo goes a step beyond and lets you tie into services to track changes,
@@ -36,3 +36,14 @@ is used to random return errors for the form elements.
   - [Blog](https://long2know.com/2015/12/integrating-client-and-server-side-validation-part-2/)
   - [Demo Plunker](http://plnkr.co/edit/wHvDG2?p=preview)
   - [Demo Codepen](http://codepen.io/long2know/pen/adNWjY)
+  
+### UI Router Tabbed Navigation
+
+This demo shows how to use ui-router and a navigationService to created a tabbed layout.
+
+As with the other navigation demos, this demo illustrates state change tracking and hooking
+into the ui-router pipeline to take advantage of state management.
+
+  - [Blog](https://long2know.com/2016/01/angular-tabbed-navigation/)
+  - [Demo Plunker]()
+  - [Demo Codepen]()
