@@ -1,4 +1,24 @@
 (function () {
+        var long2know;
+    try {
+        long2know = angular.module("long2know")
+    } catch (err) {
+        long2know = null;
+    }
+
+    if (!long2know) {
+        angular.module('long2know.services', ['ngResource', 'ngAnimate']);
+        angular.module('long2know.controllers', []);
+        angular.module('long2know.directives', []);
+        angular.module('long2know.constants', []);
+        angular.module('long2know',
+            [
+                'long2know.services',
+                'long2know.controllers',
+                'long2know.directives',
+                'long2know.constants'
+            ]);
+    }
     var navigationService = function ($rootScope, $location, $state, $sce, $log, $q, appStates, dialogService, idleService, idleListenService) {
         var
             states = appStates.states,
