@@ -1,0 +1,11 @@
+.modal-dialog {
+    margin-top: 20px;
+}
+
+.progress {
+  height: 4em;
+}
+
+.progress-bar b {
+  line-height: 4.5em;
+}
