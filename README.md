@@ -47,3 +47,10 @@ into the ui-router pipeline to take advantage of state management.
   - [Blog](https://long2know.com/2016/01/angular-tabbed-navigation/)
   - [Demo Plunker](http://plnkr.co/edit/w5xdJP?p=preview)
   - [Demo Codepen](http://codepen.io/long2know/pen/gPXeVL)
+
+### UI Progress Bar
+
+This demo shows how a simple use case for timers and the Anguiar UI progress bar.
+
+  - [Blog](https://long2know.com/2016/03/angular-progress-bar/)
+  - [Demo Codepen](http://codepen.io/long2know/pen/QNvYEZ)
